@@ -1,7 +1,4 @@
-const axios = require('axios');
 const fetch = require('node-fetch');
-const cheerio = require('cheerio');
-const request = require('request-promise');
 /* --------------- CORE --------------- */
 
 function tsv(url) {
