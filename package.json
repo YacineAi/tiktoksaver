@@ -1,0 +1,28 @@
+{
+  "name": "tiktoksaver",
+  "version": "1.0.0",
+  "description": "TikTok Videos & Music info Scraper",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YacineAi/tiktoksaver.git"
+  },
+  "keywords": [
+    "TikTok"
+  ],
+  "author": "YacineAi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/YacineAi/tiktoksaver/issues"
+  },
+  "homepage": "https://github.com/YacineAi/tiktoksaver#readme",
+  "dependencies": {
+    "axios": "^0.26.1",
+    "cheerio": "^1.0.0-rc.10",
+    "node-fetch": "^2.6.7",
+    "request-promise": "^4.2.6"
+  }
+}
