@@ -1,4 +1,5 @@
 const fetch = require('node-fetch');
+const request = require('request-promise');
 
 /* --------------- CORE --------------- */
 
@@ -9,20 +10,35 @@ function tsv(url) {
     .then(response => response)
     .then(data => { // data.url
         var remv = data.url.split('?')[0]
-        // const uid = remv.split('/')[3]
+        const uid = remv.split('/')[3]
         const vid = remv.split('/')[5]
         fetch(`https://api2.musical.ly/aweme/v1/aweme/detail/?aweme_id=${vid}`)
             .then(response => response.json())
             .then(data => {
-              const result = {
-                author: data.aweme_detail.author.nickname,
-                cover: `https://www.tiktok.com/api/img/?itemId=${vid}&location=0`,
-                description: data.aweme_detail.desc,
-                videowm: data.aweme_detail.video.download_addr.url_list[0],
-                videonm: data.aweme_detail.video.play_addr.url_list[0],
-                audio: data.aweme_detail.music.play_url.url_list[0]
-              }
-              resolve(result);
+              var reqOptions = {
+                method: 'GET',
+                uri: `https://www.tiktok.com/node/share/video/${uid}/${vid}/`,
+                qs: {},
+                headers: {
+                  'user-agent': 'okhttp'
+                },
+                json: true
+              };
+              request(reqOptions)
+                .then(function(parsedBody) {
+                  const result = {
+                    author: data.aweme_detail.author.nickname,
+                    cover: parsedBody.itemInfo.itemStruct.video.cover,
+                    description: data.aweme_detail.desc,
+                    videowm: parsedBody.itemInfo.itemStruct.video.downloadAddr,
+                    videonm: data.aweme_detail.video.play_addr.url_list[0],
+                    audio: parsedBody.itemInfo.itemStruct.music.playUrl
+                  }
+                  resolve(result);
+                })
+                .catch(function(err) {
+                  console.log("request failed : "+err);
+                });
             })
           .catch(e => {
             reject({ status: false, message: 'error fetch data', e: e.message })

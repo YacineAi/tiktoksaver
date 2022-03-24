@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/YacineAi/tiktoksaver#readme",
   "dependencies": {
-    "node-fetch": "^2.6.7"
+    "node-fetch": "^2.6.7",
+    "request-promise": "^4.2.6"
   }
 }
