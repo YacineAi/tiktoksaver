@@ -1,6 +1,6 @@
 {
   "name": "tiktoksaver",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "TikTok Videos & Music info Scraper",
   "main": "index.js",
   "scripts": {
