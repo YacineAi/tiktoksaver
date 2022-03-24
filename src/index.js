@@ -1,4 +1,5 @@
 const fetch = require('node-fetch');
+
 /* --------------- CORE --------------- */
 
 function tsv(url) {
@@ -15,7 +16,7 @@ function tsv(url) {
             .then(data => {
               const result = {
                 author: data.aweme_detail.author.nickname,
-                cover: data.aweme_detail.video.origin_cover.url_list[0],
+                cover: `https://www.tiktok.com/api/img/?itemId=${vid}&location=0`,
                 description: data.aweme_detail.desc,
                 videowm: data.aweme_detail.video.download_addr.url_list[0],
                 videonm: data.aweme_detail.video.play_addr.url_list[0],
